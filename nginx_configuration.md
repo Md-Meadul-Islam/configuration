@@ -16,61 +16,66 @@ Reusable NGINX configurations for common project types
 
 # Git – Store Credentials Permanently
 
+```bash
 git config --global credential.helper store
+```
 
-## 1. React (Static Build – NGINX Only) ⭐ Recommended
+# 1. React (Static Build – NGINX Only) ⭐ Recommended
 
-# Build
+### Build
 
+```bash
 npm run build
+```
 
-# NGINX
+### NGINX
 
+```nginx
 server {
-server_name domain.com www.domain.com;
-root /var/www/react-app/build;
-index index.html;
+    server_name domain.com www.domain.com;
+    root /var/www/react-app/build;
+    index index.html;
 
     location / {
         try_files $uri /index.html;
     }
 
-    listen 443 ssl;
-    ssl_certificate /etc/letsencrypt/live/domain.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/domain.com/privkey.pem;
-    include /etc/letsencrypt/options-ssl-nginx.conf;
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
-
 }
+```
 
-## 2. React (PM2 Static Server + NGINX Proxy)
+# 2. React (PM2 Static Server + NGINX Proxy)
 
-# PM2
+### PM2
 
+```bash
 pm2 serve ./build 3017 --spa --name projectName
+```
 
-# NGINX
+### NGINX
 
+```nginx
 server {
-server_name domain.com www.domain.com;
-
+    server_name domain.com www.domain.com;
     location / {
         include proxy_params;
         proxy_pass http://localhost:3017;
     }
-
 }
+```
 
-## 3. Node.js + Express (API Server)
+# 3. Node.js + Express (API Server)
 
-# PM2
+### PM2
 
+```bash
 pm2 start server.js --name api-server
+```
 
-# NGINX
+### NGINX
 
+```nginx
 server {
-server_name api.domain.com www.api.domain.com;
+    server_name api.domain.com www.api.domain.com;
 
     location / {
         proxy_pass http://localhost:4000;
@@ -81,17 +86,21 @@ server_name api.domain.com www.api.domain.com;
     }
 
 }
+```
 
-## 4. Node.js + Express + WebSocket (Socket.IO / WS)
+# 4. Node.js + Express + WebSocket (Socket.IO / WS)
 
-# PM2
+### PM2
 
+```bash
 pm2 start server.js --name socket-server
+```
 
-# NGINX (WebSocket Enabled)
+### NGINX (WebSocket Enabled)
 
+```nginx
 server {
-server_name socket.domain.com www.socket.domain.com;
+    server_name socket.domain.com www.socket.domain.com;
 
     location / {
         proxy_pass http://localhost:4000;
@@ -104,17 +113,21 @@ server_name socket.domain.com www.socket.domain.com;
     }
 
 }
+```
 
-## 5. Next.js (No WebSocket)
+# 5. Next.js (No WebSocket)
 
-# PM2
+### PM2
 
+```bash
 pm2 start npm --name next-app -- start
+```
 
-# NGINX
+### NGINX
 
+```nginx
 server {
-server_name domain.com www.domain.com;
+    server_name domain.com www.domain.com;
 
     add_header X-Frame-Options "SAMEORIGIN" always;
     add_header X-Content-Type-Options "nosniff" always;
@@ -136,17 +149,21 @@ server_name domain.com www.domain.com;
     }
 
 }
+```
 
-## 6. Next.js + WebSocket
+# 6. Next.js + WebSocket
 
-# PM2
+### PM2
 
+```bash
 pm2 start npm --name next-ws -- start
+```
 
-# NGINX (WebSocket Ready)
+### NGINX (WebSocket Ready)
 
+```nginx
 server {
-server_name domain.com www.domain.com;
+    server_name domain.com www.domain.com;
 
     location / {
         proxy_pass http://localhost:3000;
@@ -159,12 +176,21 @@ server_name domain.com www.domain.com;
     }
 
 }
+```
 
 # Common Commands
 
+```bash
 nginx -t
 systemctl reload nginx
 pm2 list
 pm2 logs
 pm2 save
 pm2 startup
+```
+
+# Certbot Commands
+
+```bash
+sudo certbot --nginx -d domain.com -d www.domain.com
+```
