@@ -121,6 +121,7 @@ server {
 
 ```bash
 pm2 start npm --name next-app -- start
+pm2 start npm --name next-app -- start -- -p 3010
 ```
 
 ### NGINX
@@ -157,6 +158,7 @@ server {
 
 ```bash
 pm2 start npm --name next-ws -- start
+pm2 start npm --name next-ws -- start -- -p 3010
 ```
 
 ### NGINX (WebSocket Ready)
