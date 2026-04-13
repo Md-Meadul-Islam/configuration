@@ -196,3 +196,10 @@ pm2 startup
 ```bash
 sudo certbot --nginx -d domain.com -d www.domain.com
 ```
+
+# Directory/Files Commands
+
+## Delete File
+```bash
+rm /path/to/your/file
+```
