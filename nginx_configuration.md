@@ -199,7 +199,15 @@ sudo certbot --nginx -d domain.com -d www.domain.com
 
 # Directory/Files Commands
 
-## Delete File
+## Delete a file
 ```bash
 rm /path/to/your/file
+```
+## Delete a directory- Empty
+```bash
+rmdir /path/to/directory
+```
+## Delete a directory- with Files
+```bash
+rm -r /path/to/directory
 ```
