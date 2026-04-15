@@ -72,7 +72,7 @@ pm2 start server.js --name api-server
 pm2 start server.js --name api-server -- run prod
 ```
 ### runs with ecosystem.config.js
-```js
+```javascript
 module.exports = {
   apps: [
     {
@@ -86,6 +86,8 @@ module.exports = {
     },
   ],
 };
+```
+```bash
 pm2 start ecosystem.config.js
 ```
 
