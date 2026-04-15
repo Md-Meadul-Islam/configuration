@@ -29,6 +29,7 @@ npm run build
 ```
 
 ### NGINX
+Save with Ctrl+O, Enter, then Ctrl+X.
 
 ```nginx
 server {
