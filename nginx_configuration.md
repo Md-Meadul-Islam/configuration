@@ -69,6 +69,7 @@ server {
 
 ```bash
 pm2 start server.js --name api-server
+pm2 start server.js --name api-server -- run prod
 ```
 
 ### NGINX
