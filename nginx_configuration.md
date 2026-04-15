@@ -71,6 +71,22 @@ server {
 pm2 start server.js --name api-server
 pm2 start server.js --name api-server -- run prod
 ```
+### runs with ecosystem.config.js
+```js
+module.exports = {
+  apps: [
+    {
+      name: "api_server_name",
+      script: "server.js",
+      env: {
+        NODE_ENV: "production",
+        PORT: 9000,
+      },
+      description: "",
+    },
+  ],
+};
+```
 
 ### NGINX
 
