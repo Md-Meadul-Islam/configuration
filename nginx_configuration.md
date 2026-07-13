@@ -210,6 +210,8 @@ pm2 list
 pm2 logs
 pm2 save
 pm2 startup
+pm2 start ecosystem.config.js --only food_delivery_burgerbros
+pm2 start ecosystem.config.js --only food_delivery_grilllab,food_delivery_burgerbros
 ```
 
 # Certbot Commands
@@ -228,7 +230,5 @@ rm /path/to/your/file
 ```bash
 rmdir /path/to/directory
 ```
-## Delete a directory- with Files
-```bash
-rm -r /path/to/directory
-```
+
+
