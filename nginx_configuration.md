@@ -230,5 +230,9 @@ rm /path/to/your/file
 ```bash
 rmdir /path/to/directory
 ```
+## Delete a directory- including all files and subfolders
+```bash
+rm -rf folder_name
+```
 
 
