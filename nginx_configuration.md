@@ -234,5 +234,13 @@ rmdir /path/to/directory
 ```bash
 rm -rf folder_name
 ```
+## Check a port is using/available 
+```bash
+if sudo ss -tuln | grep -q ":3000 "; then
+    echo "Port 3000 is in use"
+else
+    echo "Port 3000 is free"
+fi
+```
 
 
